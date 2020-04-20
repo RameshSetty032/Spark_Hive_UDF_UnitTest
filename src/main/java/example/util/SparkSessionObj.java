@@ -6,13 +6,13 @@ import org.apache.spark.sql.SparkSession;
 public class SparkSessionObj {
 
 
-    SparkSession getSession() {
+   public  static SparkSession  getSession() {
 
         SparkSession spark = SparkSession
                 .builder()
                 .appName("Java Spark Hive Example")
                 .config("spark.sql.warehouse.dir", ConfConstants.warehouseloc)
-                .enableHiveSupport()
+                .master("local[*]")
                 .getOrCreate();
 
         return spark;

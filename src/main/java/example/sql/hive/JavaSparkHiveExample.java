@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import example.model.Record;
 import org.apache.spark.api.java.function.MapFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Encoders;
@@ -17,14 +18,14 @@ public class JavaSparkHiveExample {
                 .builder()
                 .appName("Java Spark Hive Example")
                 .config("spark.sql.warehouse.dir", warehouseLocation)
-                .enableHiveSupport()
+                .master("local[*]")
                 .getOrCreate();
 
         spark.sql("CREATE TABLE IF NOT EXISTS src (key INT, value STRING) USING hive");
         spark.sql("LOAD DATA LOCAL INPATH 'examples/src/main/resources/kv1.txt' INTO TABLE src");
 
         // Queries are expressed in HiveQL
-       /* spark.sql("SELECT * FROM src").show();
+        spark.sql("SELECT * FROM src").show();
         spark.sql("SELECT COUNT(*) FROM src").show();
         Dataset<Row> sqlDF = spark.sql("SELECT key, value FROM src WHERE key < 10 ORDER BY key");
 
@@ -46,7 +47,7 @@ public class JavaSparkHiveExample {
 
         spark.stop();
 
-*/
+
     }
 
     }

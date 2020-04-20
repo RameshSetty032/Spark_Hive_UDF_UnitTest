@@ -5,6 +5,7 @@ public class ConfConstants {
     final public static String appName = "spark-to-Hive-job";
     final public static String master = "local[*]";
     final public static String source = "hive";
+    final public static String fileformat = "csv";
     final public static String topic = "logging_Topic";
     final public static String autoOffset = "latest";
     final public static String enableAutoOffset = "true";
