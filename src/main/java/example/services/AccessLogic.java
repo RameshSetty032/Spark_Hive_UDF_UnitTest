@@ -91,6 +91,11 @@ Dataset<Row> newdf=dfw.withColumn("Commision",callUDF("ids",col("job")) );
 
 newdf.show();
 
+
+Dataset<Row> joineddf=dfw.as("df1").join(newdf.as("df2"),dfw.col("id").equalTo(newdf.col("id"))).select("df1.*","df2.commision");
+
+joineddf.show();
+
 //dfw.write().bucketBy(6, "Id").sortBy("sal").saveAsTable("test_odm_team.Sample_data_Bucketed");
 
    // creating new Table in HIVE using Spark
@@ -116,10 +121,11 @@ newdf.show();
     }
     Dataset<Row> recordsDF = spark.createDataFrame(records, Record.class);
     recordsDF.createOrReplaceTempView("records");
-
     spark.sql("SELECT * FROM records r JOIN Keys_Table s ON r.key = s.key").show();
-
     spark.stop();
+
+
+
 
 
 }

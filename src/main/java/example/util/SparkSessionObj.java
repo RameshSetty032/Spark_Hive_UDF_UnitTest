@@ -12,7 +12,7 @@ public class SparkSessionObj {
                 .builder()
                 .appName("Java Spark Hive Example")
                 .config("spark.sql.warehouse.dir", ConfConstants.warehouseloc)
-                .master("local[*]")
+                .master("local[*]").enableHiveSupport()
                 .getOrCreate();
 
         return spark;
