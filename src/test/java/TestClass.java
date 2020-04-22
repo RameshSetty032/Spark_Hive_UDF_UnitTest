@@ -21,14 +21,17 @@ public class TestClass {
         MyAverage myAverage = new MyAverage();
         TypedColumn<Employee, Double> averageSalary = myAverage.toColumn().name("average_salary");
         Dataset<Double> result = ds.select(averageSalary);
-        avgvalue=result.toString();
+        avgvalue = result.collectAsList().get(0).toString();
+
+
+        System.out.println("AVg "+avgvalue);
         //result.show();
        // spark.stop();
 
 
     }
     @Test
-    public void testMaxEmpSalByDept(){
+    public void testExample(){
 
 
 
